@@ -38,6 +38,14 @@
   "salary": "",
   "startDate": "",
   "workPreference": "",
+  "preferredLocations": [],
+  "targetRoles": [
+    "computer vision",
+    "machine learning"
+  ],
+  "jobLevel": "",
+  "excludeKeywords": [],
+  "searchNotes": [],
   "gender": "",
   "pronouns": "",
   "hispanicLatino": "",

@@ -1,4 +1,6 @@
-# AutoInternshipClaude
+# AutoInternshipClaude (India edition)
+
+> Fork of [pqthangv/AutoInternshipClaude](https://github.com/pqthangv/AutoInternshipClaude) that adds **jobs in India**: internships and entry-level roles from Indian and global employers' own job boards, with **machine learning and computer vision as the default focus**. The skill asks you to confirm or change your roles, cities and level before the first search, and turns your feedback on results into your profile. See [India edition](#india-edition) below.
 
 Two Claude skills and a Chrome extension for internship applications. They find postings, tailor a one-page resume to each one, fill the form and track every application. By default you review and click submit yourself. You can also ask Claude to fill everything (consent boxes and signature included), or to submit for you.
 
@@ -49,6 +51,26 @@ Other requests: "Apply to 6 jobs" (leaves agreement boxes to you), "Apply to 6 j
 The skills you uploaded to the Claude app already work in its **Code** tab. For the command line, copy both skill folders into `~/.claude/skills/`. Then install Python 3 with `pip install openpyxl pypdf`, and [Tectonic](https://tectonic-typesetting.github.io/) so Claude can build Overleaf resumes itself. Tectonic is one file: put it on your PATH and restart Claude. Without it, you compile resumes in Overleaf. Poppler (better PDF checks) is optional.
 
 In auto mode, Claude Code's safety check can block Claude from ticking agreement boxes or entering your profile on job sites. To allow it, add an `autoMode` rule to `~/.claude/settings.json` ([how](https://code.claude.com/docs/en/auto-mode-config)). Claude can't add the rule for you: auto mode doesn't let it loosen its own permissions.
+
+## India edition
+
+The upstream lists (SimplifyJobs, speedyapply) are U.S. internships, which students at Indian universities usually can't take (no CPT/OPT). This fork adds `scripts/find_india_jobs.py`, which reads the public job boards of about 50 employers hiring in India (Greenhouse, Lever, Ashby, SmartRecruiters, Workday and Amazon), listed in [`references/india-companies.json`](internship-application/references/india-companies.json).
+
+**Ask for it in your own words:**
+
+> Find ML and computer vision jobs in India for my profile
+
+> Find internships in Bengaluru or remote, robotics and computer vision
+
+**What it does differently:**
+
+- **Default focus: machine learning and computer vision.** Your profile's `targetRoles` sets the role families (computer vision, machine learning, data science, software, robotics, embedded, research); the first one is your primary role and goes first in the queue.
+- **It asks before searching.** The first time, Claude shows the defaults (ML + CV; Bengaluru, Hyderabad, Chennai, Pune, Mumbai, Delhi NCR, remote; internships and entry-level roles) and asks you to keep or change them. Your answer is saved to `profile.json`.
+- **It learns from your feedback.** After each search and batch, Claude asks whether the results were the right kind. "No ADAS roles", "only Chennai" or "internships only" become `excludeKeywords`, `preferredLocations` or `jobLevel`; anything else becomes a dated `searchNotes` line it reads before every search.
+- **Indian forms.** Your profile keeps current city, current and expected CTC, notice period and internship duration as saved answers, so forms asking them fill the same way every time.
+- **Experience checks.** Postings asking for years of experience you don't have are skipped, or shown as stretches for you to choose.
+
+**Things to know:** Most Indian internships go through campus placement, so most matches are entry-level jobs. Workday boards (NVIDIA, Adobe, Intel, KLA and others) are often down for maintenance at weekends; run the search again on a weekday. Some employers (Google, Microsoft, Qualcomm) have no readable job board; the search lists links to check by hand. To add an employer, add a line to `india-companies.json`.
 
 ## Star history
 

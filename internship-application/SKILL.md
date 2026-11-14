@@ -1,6 +1,6 @@
 ---
 name: internship-application
-description: "Find internships (SimplifyJobs and speedyapply lists), tailor my Overleaf or Word resume, fill the application (and submit it if I ask) and record what I entered. Use when I share an internship posting or ask to find or apply to one."
+description: "Find internships and entry-level jobs (U.S. lists from SimplifyJobs and speedyapply; India from companies' own job boards, machine learning and computer vision by default, asking my preferences and feedback), tailor my Overleaf or Word resume, fill the application (and submit it if I ask) and record what I entered. Use when I share a job or internship posting or ask to find or apply to one, in India or the U.S."
 ---
 
 # Internship application
@@ -51,6 +51,36 @@ It adds open postings from the SimplifyJobs list (github.com/SimplifyJobs/Summer
 Choose filters from what the user said, else from the profile (major, skills, work preference), and say which. The first time, run it without `--append`, show the matches (company, role, location, posted date) and ask which to queue. After that, or in auto mode, append directly. If every download fails, read a repo page's table in the browser; if `sources_failed` names only some lists, use the results and mention the missing list in one line. On code `NETWORK`, pass its `hint` to the user once.
 
 Then continue with "Batch runs".
+
+## Finding jobs in India
+
+The lists above are U.S. internships only. For a profile whose `country` or `authCountry` is India, or whenever the user asks for jobs in India, use this instead (not find_internships.py):
+
+```
+python scripts/find_india_jobs.py --folder "<job-search folder>" [--role "computer vision" --role "machine learning" ...] [--location Chennai ...] [--level early|intern|any] [--primary-only] [--keyword ...] [--exclude-keyword ...] [--days N] [--limit N] --append
+```
+
+It asks the public job boards of the employers in `references/india-companies.json` (Greenhouse, Lever, Ashby, SmartRecruiters, Workday, Amazon) for open jobs, keeps the ones in the user's cities (or remote in India) whose titles match their target roles and level, and skips ones already in the tracker or jobs.txt. Its preferences come from the profile (`targetRoles`, `preferredLocations`, `jobLevel`, `excludeKeywords`; references/profile.md, "Search preferences and feedback"), with command-line flags overriding them for one run.
+
+**Defaults are machine learning and computer vision.** With nothing in the profile, it searches `targetRoles` computer vision then machine learning, in Bengaluru, Hyderabad, Chennai, Pune, Mumbai, Delhi NCR and Remote, at level `early` (internships, entry-level and titles with no level; Senior, Staff, Lead, II/III and so on dropped). Other role families: data science, software, robotics, embedded, research; `--keyword` replaces the families with the user's own title words. At a company whose `focus` is a target role (CynLr: computer vision), its intern, software and research roles count for that role.
+
+**Ask before the first search, and listen after it:**
+
+1. **Before the first India search in a session**, if the result's `defaults_used` would list anything (or the profile has no `targetRoles`, `preferredLocations` or `jobLevel`), ask the user once, in one question, showing the defaults: "I'll search for computer vision and machine learning roles (internships and entry-level) in Bengaluru, Hyderabad, Chennai, Pune, Mumbai, Delhi NCR and remote. Keep these, or change the roles, cities or level?" Save the answer to the profile, then search.
+2. **Show the matches without `--append`** the first time: company, role, city, posted date, and whether it's an internship (`level: intern`) or a job, grouped by `match` (primary role first). Ask which to queue, and in the same message: "Anything here that shouldn't have shown up, or a kind of role I'm missing?"
+3. **Turn feedback into the profile.** "No ADAS roles" → add to `excludeKeywords`; "only Chennai" → `preferredLocations`; "internships only" → `jobLevel: intern`; "more robotics" → add to `targetRoles`; anything else → a dated `searchNotes` line. Save without asking and say in one line what changed. Read `searchNotes` before every search and checkpoint.
+4. **After each batch report**, end with one line asking whether the postings were the right kind, and apply the answer the same way.
+
+With `--append` the lines go into jobs.txt in the same format and order as find_internships.py, so "Batch runs" works unchanged. On India lines the `fame` tag is the user's priority, not company fame: 1 primary-role internship or entry role, 2 other primary-role job, 3 other target role at a well-known company, 4 the rest. Don't run `find_internships.py --sort` on them (it would overwrite these tags); `--tidy` keeps them.
+
+- Indian internships are rarely posted on these boards (they mostly go through campus placement). Most matches are full-time entry roles, so say which are internships (`level: intern`) and which are jobs.
+- **Experience requirements.** Titles rarely say "senior", but postings often ask for years ("3+ years", "5+ years with a Master's"). At step 2, a posting whose minimum experience is clearly more than the user has is a skip; one asking 1–3 years more is a stretch: list it at the checkpoint as a stretch and let the user choose.
+- **Indian application forms** ask for current CTC, expected CTC, notice period, current city and internship duration. Fill them from `savedAnswers` (references/profile.md says which to ask for); ask once for any that's missing and save it.
+- `sources_failed` naming Workday boards "down for maintenance" is normal on weekends: say which companies were missed and suggest running again on a weekday. Any other failure: mention it in one line.
+- `search_by_hand` lists employers with no readable board (Google, Microsoft, Qualcomm and others). Mention them once with their links; with the user's go-ahead, search them in the browser.
+- To add an employer, add a line to india-companies.json with its board (the `_about` note says how) and run again.
+- Sponsorship, citizenship and U.S. class-year rules in step 2 don't apply to jobs in India. Check the posting's degree, graduation year, experience ("0-2 years") and start date instead.
+- fetch_posting.py sometimes reads a Workday company name from the location ("IN5C Bangalore"): take the company from the jobs.txt note.
 
 ## LinkedIn
 
