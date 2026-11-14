@@ -1,0 +1,404 @@
+{
+  "_about": "Employers searched by scripts/find_india_jobs.py. Each entry names the company's public job board: greenhouse (token), lever (token), ashby (token), smartrecruiters (token = company id), workday (host + site), amazon. fame: 1 best known, 4 least. focus: a role family (computer vision, robotics, ...) that is core to the company; when it's one of the user's target roles, the company's intern, software and research roles count for it, and its ML roles count as that role. verified: the board answered on that date (Workday boards were in weekend maintenance on 2026-11-14, so they are unverified until a run reaches them). Add a company by adding a line; a board that stops answering shows up in the script's sources_failed.",
+  "companies": [
+    {
+      "company": "Netradyne",
+      "ats": "greenhouse",
+      "token": "netradyne",
+      "fame": 3,
+      "focus": "cv",
+      "verified": "2026-11-14"
+    },
+    {
+      "company": "CynLr",
+      "ats": "ashby",
+      "token": "cynlr",
+      "fame": 4,
+      "focus": "cv",
+      "verified": "2026-11-14"
+    },
+    {
+      "company": "Glance",
+      "ats": "greenhouse",
+      "token": "glance",
+      "fame": 3,
+      "verified": "2026-11-14"
+    },
+    {
+      "company": "InMobi",
+      "ats": "greenhouse",
+      "token": "inmobi",
+      "fame": 2,
+      "verified": "2026-11-14"
+    },
+    {
+      "company": "Sarvam AI",
+      "ats": "ashby",
+      "token": "sarvam",
+      "fame": 3,
+      "verified": "2026-11-14"
+    },
+    {
+      "company": "CRED",
+      "ats": "lever",
+      "token": "cred",
+      "fame": 2,
+      "verified": "2026-11-14"
+    },
+    {
+      "company": "Meesho",
+      "ats": "lever",
+      "token": "meesho",
+      "fame": 2,
+      "verified": "2026-11-14"
+    },
+    {
+      "company": "Observe.AI",
+      "ats": "greenhouse",
+      "token": "observeai",
+      "fame": 4,
+      "verified": "2026-11-14"
+    },
+    {
+      "company": "Samsara",
+      "ats": "greenhouse",
+      "token": "samsara",
+      "fame": 2,
+      "focus": "cv",
+      "verified": "2026-11-14"
+    },
+    {
+      "company": "Databricks",
+      "ats": "greenhouse",
+      "token": "databricks",
+      "fame": 1,
+      "verified": "2026-11-14"
+    },
+    {
+      "company": "Rubrik",
+      "ats": "greenhouse",
+      "token": "rubrik",
+      "fame": 2,
+      "verified": "2026-11-14"
+    },
+    {
+      "company": "Stripe",
+      "ats": "greenhouse",
+      "token": "stripe",
+      "fame": 1,
+      "verified": "2026-11-14"
+    },
+    {
+      "company": "Groww",
+      "ats": "greenhouse",
+      "token": "groww",
+      "fame": 2,
+      "verified": "2026-11-14"
+    },
+    {
+      "company": "Mindtickle",
+      "ats": "lever",
+      "token": "mindtickle",
+      "fame": 3,
+      "verified": "2026-11-14"
+    },
+    {
+      "company": "Sigmoid",
+      "ats": "greenhouse",
+      "token": "sigmoid",
+      "fame": 4,
+      "verified": "2026-11-14"
+    },
+    {
+      "company": "Tekion",
+      "ats": "ashby",
+      "token": "tekion",
+      "fame": 3,
+      "verified": "2026-11-14"
+    },
+    {
+      "company": "MongoDB",
+      "ats": "greenhouse",
+      "token": "mongodb",
+      "fame": 2,
+      "verified": "2026-11-14"
+    },
+    {
+      "company": "Okta",
+      "ats": "greenhouse",
+      "token": "okta",
+      "fame": 2,
+      "verified": "2026-11-14"
+    },
+    {
+      "company": "Zscaler",
+      "ats": "greenhouse",
+      "token": "zscaler",
+      "fame": 2,
+      "verified": "2026-11-14"
+    },
+    {
+      "company": "GitLab",
+      "ats": "greenhouse",
+      "token": "gitlab",
+      "fame": 2,
+      "verified": "2026-11-14"
+    },
+    {
+      "company": "Elastic",
+      "ats": "greenhouse",
+      "token": "elastic",
+      "fame": 2,
+      "verified": "2026-11-14"
+    },
+    {
+      "company": "Druva",
+      "ats": "greenhouse",
+      "token": "druva",
+      "fame": 3,
+      "verified": "2026-11-14"
+    },
+    {
+      "company": "Coinbase",
+      "ats": "greenhouse",
+      "token": "coinbase",
+      "fame": 1,
+      "verified": "2026-11-14"
+    },
+    {
+      "company": "Twilio",
+      "ats": "greenhouse",
+      "token": "twilio",
+      "fame": 2,
+      "verified": "2026-11-14"
+    },
+    {
+      "company": "Turing",
+      "ats": "greenhouse",
+      "token": "turing",
+      "fame": 4,
+      "verified": "2026-11-14"
+    },
+    {
+      "company": "Atlan",
+      "ats": "ashby",
+      "token": "atlan",
+      "fame": 4,
+      "verified": "2026-11-14"
+    },
+    {
+      "company": "Anthropic",
+      "ats": "greenhouse",
+      "token": "anthropic",
+      "fame": 1,
+      "verified": "2026-11-14"
+    },
+    {
+      "company": "OpenAI",
+      "ats": "ashby",
+      "token": "openai",
+      "fame": 1,
+      "verified": "2026-11-14"
+    },
+    {
+      "company": "ElevenLabs",
+      "ats": "ashby",
+      "token": "elevenlabs",
+      "fame": 2,
+      "verified": "2026-11-14"
+    },
+    {
+      "company": "Together AI",
+      "ats": "greenhouse",
+      "token": "togetherai",
+      "fame": 3,
+      "verified": "2026-11-14"
+    },
+    {
+      "company": "Deepgram",
+      "ats": "ashby",
+      "token": "deepgram",
+      "fame": 3,
+      "verified": "2026-11-14"
+    },
+    {
+      "company": "Bosch",
+      "ats": "smartrecruiters",
+      "token": "BoschGroup",
+      "fame": 2,
+      "verified": "2026-11-14"
+    },
+    {
+      "company": "Continental",
+      "ats": "smartrecruiters",
+      "token": "Continental",
+      "fame": 2,
+      "verified": "2026-11-14"
+    },
+    {
+      "company": "ServiceNow",
+      "ats": "smartrecruiters",
+      "token": "ServiceNow",
+      "fame": 1,
+      "verified": "2026-11-14"
+    },
+    {
+      "company": "Amazon",
+      "ats": "amazon",
+      "fame": 1,
+      "verified": "2026-11-14"
+    },
+    {
+      "company": "Philips",
+      "ats": "workday",
+      "host": "philips.wd3.myworkdayjobs.com",
+      "site": "jobs-and-careers",
+      "fame": 2,
+      "focus": "cv",
+      "verified": "2026-11-14"
+    },
+    {
+      "company": "Samsung",
+      "ats": "workday",
+      "host": "sec.wd3.myworkdayjobs.com",
+      "site": "Samsung_Careers",
+      "fame": 1,
+      "verified": "2026-11-14"
+    },
+    {
+      "company": "Salesforce",
+      "ats": "workday",
+      "host": "salesforce.wd12.myworkdayjobs.com",
+      "site": "External_Career_Site",
+      "fame": 1,
+      "verified": "2026-11-14"
+    },
+    {
+      "company": "NVIDIA",
+      "ats": "workday",
+      "host": "nvidia.wd5.myworkdayjobs.com",
+      "site": "NVIDIAExternalCareerSite",
+      "fame": 1,
+      "focus": "cv"
+    },
+    {
+      "company": "Adobe",
+      "ats": "workday",
+      "host": "adobe.wd5.myworkdayjobs.com",
+      "site": "external_experienced",
+      "fame": 1,
+      "focus": "cv"
+    },
+    {
+      "company": "Intel",
+      "ats": "workday",
+      "host": "intel.wd1.myworkdayjobs.com",
+      "site": "External",
+      "fame": 1
+    },
+    {
+      "company": "GE HealthCare",
+      "ats": "workday",
+      "host": "gehc.wd5.myworkdayjobs.com",
+      "site": "GEHC_ExternalSite",
+      "fame": 2,
+      "focus": "cv"
+    },
+    {
+      "company": "KLA",
+      "ats": "workday",
+      "host": "kla.wd1.myworkdayjobs.com",
+      "site": "Search",
+      "fame": 2,
+      "focus": "cv"
+    },
+    {
+      "company": "Micron",
+      "ats": "workday",
+      "host": "micron.wd1.myworkdayjobs.com",
+      "site": "External",
+      "fame": 2
+    },
+    {
+      "company": "Analog Devices",
+      "ats": "workday",
+      "host": "analogdevices.wd1.myworkdayjobs.com",
+      "site": "External",
+      "fame": 2
+    },
+    {
+      "company": "Applied Materials",
+      "ats": "workday",
+      "host": "amat.wd1.myworkdayjobs.com",
+      "site": "External",
+      "fame": 2,
+      "focus": "cv"
+    },
+    {
+      "company": "HP",
+      "ats": "workday",
+      "host": "hp.wd5.myworkdayjobs.com",
+      "site": "ExternalCareerSite",
+      "fame": 1
+    },
+    {
+      "company": "MathWorks",
+      "ats": "workday",
+      "host": "mathworks.wd1.myworkdayjobs.com",
+      "site": "MathWorks",
+      "fame": 2
+    }
+  ],
+  "browser_only": [
+    {
+      "company": "Google",
+      "url": "https://www.google.com/about/careers/applications/jobs/results/?location=India&q=computer%20vision",
+      "why": "no public job API"
+    },
+    {
+      "company": "Microsoft",
+      "url": "https://jobs.careers.microsoft.com/global/en/search?q=computer%20vision&lc=India",
+      "why": "board refuses scripts"
+    },
+    {
+      "company": "Qualcomm",
+      "url": "https://careers.qualcomm.com/careers?query=computer%20vision&location=India",
+      "why": "board refuses scripts"
+    },
+    {
+      "company": "Texas Instruments",
+      "url": "https://careers.ti.com/",
+      "why": "Oracle site; search in the browser"
+    },
+    {
+      "company": "Mercedes-Benz R&D India",
+      "url": "https://www.mbrdi.co.in/careers",
+      "why": "no public job API"
+    },
+    {
+      "company": "Samsung R&D Institute India (Bangalore)",
+      "url": "https://research.samsung.com/sri-b",
+      "why": "hires mostly through campus drives"
+    },
+    {
+      "company": "Qure.ai",
+      "url": "https://www.qure.ai/careers",
+      "why": "no public job API"
+    },
+    {
+      "company": "Wadhwani AI",
+      "url": "https://www.wadhwaniai.org/careers/",
+      "why": "no public job API"
+    },
+    {
+      "company": "Ati Motors",
+      "url": "https://atimotors.com/careers",
+      "why": "no public job API"
+    },
+    {
+      "company": "Detect Technologies (Chennai)",
+      "url": "https://www.detecttechnologies.com/careers",
+      "why": "no public job API"
+    }
+  ]
+}

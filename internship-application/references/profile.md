@@ -21,6 +21,27 @@ Only when the folder has no profile.json:
 - Government ties: a current or former government employee or official (`governmentEmployee`); a close relative who is one (`governmentRelative`).
 - Optional, voluntary self-identification: gender, pronouns, Hispanic or Latino, race, veteran status, disability, LGBTQ+, transgender, sexual orientation. Each is an answer, "decline", or empty (the user answers on each form). Never infer these from a name, photo or anything else.
 - Optional: `writingStyle` and `extraRules` for written answers.
+- Search preferences (one question, defaults shown so the user can just confirm): `targetRoles` (the template's default is computer vision and machine learning; other families: data science, software, robotics, embedded, research), `preferredLocations`, and `jobLevel` (internships only, or internships plus entry-level jobs).
+
+For a user in India (`country` or `authCountry` India), also ask these, since Indian application forms require them, and save each to `savedAnswers` with the match phrase shown:
+
+- Current city (`current city`), for example "Chennai, India".
+- Current CTC (`current ctc`): "0 (student)" for a student.
+- Expected CTC (`expected ctc`), in INR, for jobs and, if different, the expected monthly stipend for internships (`expected stipend`).
+- Notice period (`notice period`), for a student, for example "Student; degree ends June 2027".
+- Internship duration they can do (`duration of internship`), for example "2 months".
+
+## Search preferences and feedback
+
+`find_india_jobs.py` reads four fields, and the user's feedback on results keeps them current:
+
+- `targetRoles`: role families in order of preference; the first is primary and its matches go first. Families: `computer vision`, `machine learning`, `data science`, `software`, `robotics`, `embedded`, `research` (aliases like "cv", "ml", "swe" work).
+- `preferredLocations`: cities, plus "Remote" for remote roles in India. "Delhi NCR" covers Delhi, Gurugram and Noida.
+- `jobLevel`: `early` (internships, entry-level and titles without a level; the default), `intern` (internships only) or `any`.
+- `excludeKeywords`: title words to drop, for example "ADAS" or "data analyst".
+- `searchNotes`: short dated notes from the user's feedback that don't fit a field ("2026-11-14: prefers research-heavy roles; skip roles asking 3+ years"). Read them before every search and checkpoint, and apply them when choosing postings.
+
+When the user says a result was wrong for them ("not interested in ADAS", "only Chennai", "too senior"), update the matching field without asking, add a `searchNotes` line if needed, and say in one line what changed.
 
 ## Values
 
@@ -35,7 +56,7 @@ Only when the folder has no profile.json:
   - `lgbtq`: `yes`, `no`, `decline`
   - `transgender`: `yes`, `no`, `decline`
   - `sexualOrientation`: `straight`, `gay`, `lesbian`, `bisexual`, `pansexual`, `asexual`, `queer`, `decline`
-- Text as the user would write it: `classStanding` ("Sophomore"), `expectedGraduation` ("May 2028"), `internshipTerm` ("Summer 2027"), `availableFrom` and `availableUntil` ("June 1, 2027"), `workAuthDetails` (for written answers and the eligibility screen in fetch_posting.py, for example "F-1 student, eligible for CPT"), `salary`, `startDate`, `workPreference`, `summary`, `skills`, `yearsExperience`, `writingStyle`, and `extraRules` (one rule per line).
+- Text as the user would write it: `classStanding` ("Sophomore"), `expectedGraduation` ("May 2028"), `internshipTerm` ("Summer 2027"), `availableFrom` and `availableUntil` ("June 1, 2027"), `workAuthDetails` (for written answers and the eligibility screen in fetch_posting.py, for example "F-1 student, eligible for CPT"), `salary`, `startDate`, `workPreference`, `preferredLocations` (a list of cities, plus "Remote" if remote is fine; find_india_jobs.py searches these), `summary`, `skills`, `yearsExperience`, `writingStyle`, and `extraRules` (one rule per line).
 - List entries:
   - `education`: `{ "school", "degree", "field", "minor", "start", "end", "gpa" }`, GPA exactly as written.
   - `work`: `{ "title", "company", "location", "start", "end", "highlights" }`, one highlight per line.
